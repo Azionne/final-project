@@ -1,0 +1,262 @@
+/* Specific styles for the successful registration modal inside modal__content */
+.modal__content > .modal__successfull-registration {
+  width: 315px;
+  height: 56px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  z-index: 1000;
+}
+
+.modal_opened {
+  visibility: visible;
+}
+
+.modal__title {
+  font-family: "RobotoSlab", serif;
+  font-weight: 600;
+  font-size: 24px;
+  margin: 0 0 32px 0;
+  padding: 0;
+  color: #1a1b22;
+  text-align: left;
+}
+
+.modal__content {
+  background-color: #ffffff;
+  position: relative;
+  padding: 36px;
+  width: 430px;
+  min-height: 380px;
+  box-sizing: border-box;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.modal__image {
+  border-radius: 20px;
+}
+
+.modal__close {
+  position: absolute;
+  top: -30px;
+  right: -50px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.modal__close:before,
+.modal__close:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 2px;
+  background-color: #ffffff;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.modal__close:after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.modal__close:hover {
+  opacity: 0.6;
+}
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.modal__submit-button {
+  background-color: #d3d3d3;
+  color: #ffffff;
+  border: none;
+  border-radius: 100px;
+  padding: 18px 24px;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: "RobotoSlab", serif;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 8px;
+}
+
+.modal__submit-button:hover {
+  background-color: #b8b8b8;
+}
+
+.modal__submit-button:disabled {
+  background-color: #d3d3d3;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.modal__legend {
+  color: #000000;
+  font-size: 16px;
+  line-height: 1.25;
+  padding: 24px 0 12px 0;
+}
+
+.modal__label {
+  font-family: "Cabinet Grotesk";
+  font-weight: 700px;
+  font-size: 16px;
+  padding: 0 0 24px 0;
+  gap: 8px;
+}
+
+.modal__radio-buttons {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 8px;
+  margin: 0;
+  padding: 0 0 36px 0;
+  border: none;
+  color: #00000080;
+}
+
+.modal__radio-input {
+  align-items: center;
+  border: none;
+}
+
+.modal__label_type_radio {
+  padding: 0;
+}
+
+input[type="radio"] {
+  accent-color: #000000;
+}
+
+/* Add shared modal button styles for Login and Signup */
+.modal__submit,
+.login-modal__submit,
+.register-modal__submit {
+  background-color: #d3d3d3;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 16px 24px;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 24px;
+  font-family: "RobotoSlab", serif;
+}
+
+.modal__submit:enabled,
+.login-modal__submit:enabled,
+.register-modal__submit:enabled {
+  background-color: #1a1b22;
+  cursor: pointer;
+}
+
+.modal__submit:disabled,
+.login-modal__submit:disabled,
+.register-modal__submit:disabled {
+  background-color: #d3d3d3;
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+.modal__submit:enabled:hover,
+.login-modal__submit:enabled:hover,
+.register-modal__submit:enabled:hover {
+  background-color: #333;
+}
+
+.modal__signup-link,
+.login-modal__signup-link,
+.register-modal__login-link {
+  display: inline-block;
+  margin-top: 24px;
+  text-align: center;
+  width: 100%;
+  color: #1a1b22;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  font-family: "RobotoSlab", serif;
+  font-weight: 500;
+}
+
+.modal__signup-link:hover,
+.login-modal__signup-link:hover,
+.register-modal__login-link:hover {
+  opacity: 0.7;
+}
+
+.login-form__error {
+  color: #e74c3c;
+  font-size: 14px;
+  margin-top: 4px;
+  display: block;
+}
+
+.modal__required-message {
+  color: #e74c3c;
+  font-size: 12px;
+  margin-top: 2px;
+  display: block;
+}
+
+.button__container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.modal__footer {
+  font-family: "Cabinet Grotesk";
+  font-weight: 700px;
+  font-size: 16px;
+}
+
+/* Mobile responsiveness for modal dimensions */
+@media (max-width: 768px) {
+  .modal__content {
+    width: calc(100vw - 40px);
+    height: auto;
+    max-width: 380px;
+    margin: 20px;
+    padding: 28px 24px;
+  }
+
+  .modal__title {
+    font-size: 20px;
+    margin-bottom: 24px;
+  }
+}

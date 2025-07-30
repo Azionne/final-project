@@ -1,0 +1,6 @@
+@import url("./vendor/fonts/normalize.css");
+@import url("./vendor/fonts/fonts.css");
+
+body {
+  font-family: "RobotoSlab", serif;
+}

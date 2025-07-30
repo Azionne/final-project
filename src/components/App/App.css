@@ -1,0 +1,29 @@
+/* Reset default margins and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+/* Hero Section with Background Image */
+.hero-section {
+  position: relative;
+  width: 100vw;
+  height: 60vh;
+  background-image: url("../../assets/background image.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  filter: brightness(0.9);
+}

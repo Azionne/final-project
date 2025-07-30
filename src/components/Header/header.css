@@ -1,0 +1,475 @@
+/* Theme modifiers for header */
+.header--dark {
+  color: white;
+}
+.header--dark .header__logo,
+.header--dark .header__nav-link,
+.header--dark .header__user-name,
+.header--dark .header__user-pill {
+  color: white;
+}
+.header--dark .header__logout-icon {
+  filter: invert(1);
+}
+
+.header--light {
+  color: black;
+}
+.header--light .header__logo,
+.header--light .header__nav-link,
+.header--light .header__user-name {
+  color: black;
+}
+.header--light .header__user-pill {
+  color: black;
+  background: transparent;
+  border: 1.5px solid #000;
+}
+.header--light .header__logout-icon {
+  filter: invert(0);
+}
+/* Mobile menu NewsExplorer logo */
+.header__mobile-logo {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: "RobotoSlab", serif;
+  color: white;
+  text-decoration: none;
+  z-index: 1002;
+  letter-spacing: 0.5px;
+  background: none;
+  cursor: pointer;
+}
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  background: transparent;
+  color: black;
+  z-index: 20; /* Higher than search form but not extreme */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  pointer-events: auto; /* Keep this for better clicks */
+}
+
+.header_image {
+  width: 1440px;
+  height: 576px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.header__left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex: 1;
+}
+
+.header__right {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  margin-left: auto;
+}
+
+.header__logo {
+  width: 89px;
+  height: 40px;
+}
+
+.header__date-and-location {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: "RobotoSlab", serif;
+}
+
+.header__logo {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: "RobotoSlab", serif;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.header__logo:hover {
+  opacity: 0.8;
+}
+
+.header__nav-link {
+  color: black;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  font-family: "RobotoSlab", serif;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  position: relative;
+  cursor: pointer;
+  pointer-events: auto; /* Ensure clicks work */
+  display: inline-block; /* Better click area */
+}
+
+.header__nav-link:hover {
+  opacity: 0.8;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.header__nav-link.active {
+  position: relative;
+}
+
+.header__nav-link.active::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 3px;
+  background-color: white;
+}
+
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin-right: 104px;
+}
+
+.header__button {
+  margin-left: auto;
+  font-weight: 700;
+  font-size: 20px;
+  border: 0;
+  background-color: transparent;
+  border-radius: 12;
+}
+
+.header__register-button {
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  background: none;
+  margin-right: -41px;
+  font-family: "RobotoSlab", serif;
+  text-decoration: none;
+  position: relative;
+}
+
+.header__register-button::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -22px;
+  height: 3px;
+  background-color: white;
+}
+
+.header__login-button {
+  color: white;
+  border: 2px solid white;
+  border-radius: 50px;
+  padding: 8px 20px;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  background: none;
+  margin-left: 20px;
+  font-family: "RobotoSlab", serif;
+}
+
+.header__login-button:hover {
+  opacity: 0.7;
+}
+
+.header__avatar-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: black;
+}
+
+.header__profile-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.header__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.header__username {
+  margin: 0;
+  font-weight: 700;
+  font-family: "RobotoSlab", serif;
+  font-size: 20px;
+  text-decoration: none;
+  color: white;
+}
+
+.header__link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.header__add-clothes-button {
+  color: #090909;
+  border: none;
+  padding: 8px 20px;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+  background: none;
+  margin-left: 20px;
+  font-family: "RobotoSlab", serif;
+}
+
+.header__user-container {
+  display: flex;
+}
+
+.header__user-info {
+  margin-left: -341px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* User pill and logout button for header */
+.header__user-pill {
+  display: flex;
+  align-items: center;
+  border: 1.5px solid white;
+  border-radius: 50px;
+  background: transparent;
+  padding: 4px 22px 4px 18px; /* More right padding for icon spacing */
+  margin-left: 32px; /* More space from nav links */
+  gap: 8px; /* Slightly tighter gap between name and icon */
+  cursor: pointer;
+  transition: background 0.2s, border 0.2s;
+  height: 40px;
+  min-width: 120px;
+  box-sizing: border-box;
+}
+.header__user-pill:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: #e5e5e5;
+}
+.header__user-name {
+  color: white;
+  font-family: "RobotoSlab", serif;
+  font-size: 18px;
+  font-weight: 500;
+  margin-right: 0;
+  letter-spacing: 0.01em;
+}
+.header__logout-icon {
+  width: 22px;
+  height: 22px;
+  filter: invert(1);
+  margin-left: 0;
+  margin-right: -4px; /* Pull icon closer to pill edge */
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .header {
+    padding: 0 16px;
+    height: 56px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .header__logo {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  /* Hide desktop navigation on mobile */
+  .header__right--desktop {
+    display: none;
+  }
+
+  /* Mobile hamburger menu button */
+  .header__mobile-menu-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    gap: 4px;
+  }
+
+  .header__mobile-menu-line {
+    width: 16px;
+    height: 2px;
+    background-color: white;
+    transition: all 0.3s ease;
+    border-radius: 1px;
+  }
+
+  .header__mobile-menu-button--open .header__mobile-menu-line:first-child {
+    transform: rotate(45deg) translate(3px, 3px);
+  }
+
+  .header__mobile-menu-button--open .header__mobile-menu-line:last-child {
+    transform: rotate(-45deg) translate(3px, -3px);
+  }
+
+  /* Mobile menu overlay */
+  .header__mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      to bottom,
+      #1a1b22 0%,
+      #1a1b22 40%,
+      rgba(26, 27, 34, 0.8) 40%,
+      rgba(26, 27, 34, 0.8) 100%
+    );
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  /* Mobile close X button */
+  .header__mobile-close-button {
+    position: absolute;
+    top: 17px;
+    right: 20px;
+    width: 24px;
+    height: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1002;
+  }
+
+  .header__mobile-close-line {
+    position: absolute;
+    width: 20px;
+    height: 2px;
+    background-color: white;
+    transition: all 0.3s ease;
+  }
+
+  .header__mobile-close-line:first-child {
+    transform: rotate(45deg);
+  }
+
+  .header__mobile-close-line:last-child {
+    transform: rotate(-45deg);
+  }
+
+  .header__mobile-close-button:hover .header__mobile-close-line {
+    opacity: 0.7;
+  }
+
+  .header__mobile-menu-content {
+    background-color: transparent;
+    border-radius: 0;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    box-shadow: none;
+    margin-top: 60px;
+  }
+
+  .header__mobile-nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 500;
+    font-family: "RobotoSlab", serif;
+    padding: 0;
+    border-radius: 0;
+    text-align: left;
+    transition: opacity 0.2s;
+    border: none;
+    background: none;
+  }
+
+  .header__mobile-nav-link:hover {
+    opacity: 0.7;
+    background-color: transparent;
+  }
+
+  .header__mobile-login-button {
+    color: white;
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 50px;
+    padding: 16px 24px;
+    font-size: 18px;
+    font-weight: 500;
+    font-family: "RobotoSlab", serif;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: calc(100vw - 60px);
+    text-align: center;
+    margin-top: 24px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .header__mobile-login-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1.5px solid #bbb;
+    background: #f5f5f5;
+
+    /* Hide mobile menu button on desktop */
+    color: black;
+    display: none;
+  }
+}
+
+/* Show mobile menu button only on mobile */
+@media (max-width: 768px) {
+  .header__mobile-menu-button {
+    display: flex;
+  }
+}
