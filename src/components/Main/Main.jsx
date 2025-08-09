@@ -37,7 +37,7 @@ export function Main({
 
     if (isLoading) {
       return (
-        <section className="search-results">
+        <section className="main__search-results" aria-live="polite">
           <Preloader />
         </section>
       );
@@ -45,9 +45,13 @@ export function Main({
 
     if (searchError) {
       return (
-        <section className="search-results">
-          <div className="search-results__error">
-            <p>
+        <section
+          className="main__search-results"
+          role="alert"
+          aria-live="assertive"
+        >
+          <div className="main__search-error">
+            <p className="main__search-error-text">
               Sorry, something went wrong during the request. Please try again
               later.
             </p>
@@ -58,15 +62,15 @@ export function Main({
 
     if (articles.length === 0) {
       return (
-        <section className="search-results">
-          <div className="search-results__nothing-found">
+        <section className="main__search-results" aria-live="polite">
+          <div className="main__nothing-found">
             <img
               src={notFoundImg}
-              alt="Nothing found"
-              className="search-results__not-found-img"
+              alt="No search results found"
+              className="main__not-found-image"
             />
-            <h3>Nothing found</h3>
-            <p>
+            <h3 className="main__nothing-found-title">Nothing found</h3>
+            <p className="main__nothing-found-text">
               Sorry, but nothing matched
               <br />
               your search terms.
@@ -77,24 +81,42 @@ export function Main({
     }
 
     return (
-      <section className="search-results">
-        <h3 className="search-results__title">Search results</h3>
-        <div className="search-results__cards">
+      <section
+        className="main__search-results"
+        aria-live="polite"
+        aria-labelledby="search-results-title"
+      >
+        <h2 id="search-results-title" className="main__search-results-title">
+          Search results
+        </h2>
+        <div
+          className="main__cards-container"
+          role="list"
+          aria-label={`${articles.length} search results found`}
+        >
           {articles.slice(0, visibleCards).map((article, index) => (
-            <NewsCard
-              key={`${article.url}-${index}`}
-              article={article}
-              isLoggedIn={isLoggedIn}
-              onSave={(article) => onSaveArticle(article, article.keyword)}
-              isSaved={isArticleSaved(article)}
-              showDelete={false}
-            />
+            <div key={`${article.url}-${index}`} role="listitem">
+              <NewsCard
+                article={article}
+                isLoggedIn={isLoggedIn}
+                onSave={(article) => onSaveArticle(article, article.keyword)}
+                isSaved={isArticleSaved(article)}
+                showDelete={false}
+              />
+            </div>
           ))}
         </div>
         {visibleCards < articles.length && (
           <button
-            className="search-results__show-more"
+            className="main__show-more-button"
             onClick={handleShowMore}
+            type="button"
+            aria-label={`Show ${Math.min(
+              3,
+              articles.length - visibleCards
+            )} more articles out of ${
+              articles.length - visibleCards
+            } remaining`}
           >
             Show more
           </button>
@@ -104,26 +126,26 @@ export function Main({
   };
 
   return (
-    <>
-      <div className="main__hero">
-        <Header
-          isLoggedIn={isLoggedIn}
-          userName={userName}
-          onSignInClick={onSignInClick}
-          onSignUpClick={onSignUpClick}
-          onLogout={onLogout}
-          theme="dark"
-        />
-        <div className="main__content">
+    <main className="main" role="main">
+      <Header
+        isLoggedIn={isLoggedIn}
+        userName={userName}
+        onSignInClick={onSignInClick}
+        onSignUpClick={onSignUpClick}
+        onLogout={onLogout}
+        theme="dark"
+      />
+      <header className="main__hero">
+        <section className="main__content">
           <h1 className="main__title">What's going on in the world?</h1>
           <p className="main__subtitle">
             Find the latest news on any topic and save them in your personal
             account.
           </p>
           <SearchForm onSubmit={onSearch} />
-        </div>
-      </div>
+        </section>
+      </header>
       {renderSearchResults()}
-    </>
+    </main>
   );
 }

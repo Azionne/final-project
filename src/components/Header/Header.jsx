@@ -31,13 +31,16 @@ function Header({
       </div>
 
       {/* Desktop Navigation */}
-      <nav className="header__right header__right--desktop">
+      <nav className="header__right">
         {isLoggedIn ? (
           <>
             <Link to="/" className="header__nav-link">
               Home
             </Link>
-            <Link to="/saved-news" className="header__nav-link">
+            <Link
+              to="/saved-news"
+              className="header__nav-link header__nav-link--saved"
+            >
               Saved articles
             </Link>
             <button
@@ -110,7 +113,7 @@ function Header({
                 </Link>
                 <Link
                   to="/saved-news"
-                  className="header__mobile-nav-link"
+                  className="header__mobile-nav-link header__mobile-nav-link--saved"
                   onClick={closeMobileMenu}
                 >
                   Saved articles

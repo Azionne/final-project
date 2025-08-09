@@ -84,6 +84,7 @@ export default function LoginModal(props) {
           <span className="register-modal__error-email">{emailError}</span>
         )}
       </label>
+
       <label className="login-modal__label">
         Password *
         <input
@@ -95,13 +96,16 @@ export default function LoginModal(props) {
           required
         />
       </label>
+
       {loginError && !emailError && (
         <p className="login-modal__error">{loginError}</p>
       )}
+
       <button
         type="button"
         className="login-modal__switch-button"
         onClick={switchToRegister}
+        style={{ order: 2 }}
       >
         or Sign up
       </button>

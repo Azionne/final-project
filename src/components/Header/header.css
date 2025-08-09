@@ -28,6 +28,7 @@
 .header--light .header__logout-icon {
   filter: invert(0);
 }
+
 /* Mobile menu NewsExplorer logo */
 .header__mobile-logo {
   position: absolute;
@@ -43,6 +44,7 @@
   background: none;
   cursor: pointer;
 }
+
 .header {
   position: absolute;
   top: 0;
@@ -55,10 +57,10 @@
   justify-content: space-between;
   padding: 0 40px;
   background: transparent;
-  color: black;
-  z-index: 20; /* Higher than search form but not extreme */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-  pointer-events: auto; /* Keep this for better clicks */
+  color: white;
+  z-index: 20;
+  border-bottom: none;
+  pointer-events: auto;
 }
 
 .header_image {
@@ -68,6 +70,7 @@
   background-position: center;
   background-repeat: no-repeat;
 }
+
 .header__left {
   display: flex;
   align-items: center;
@@ -83,8 +86,14 @@
 }
 
 .header__logo {
-  width: 89px;
-  height: 40px;
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: "RobotoSlab", serif;
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+  transition: opacity 0.2s;
 }
 
 .header__date-and-location {
@@ -94,23 +103,12 @@
   font-family: "RobotoSlab", serif;
 }
 
-.header__logo {
-  margin: 0;
-  font-size: 20px;
-  font-weight: 700;
-  font-family: "RobotoSlab", serif;
-  text-decoration: none;
-  color: black;
-  cursor: pointer;
-  transition: opacity 0.2s;
-}
-
 .header__logo:hover {
   opacity: 0.8;
 }
 
 .header__nav-link {
-  color: black;
+  color: white;
   text-decoration: none;
   font-size: 18px;
   font-weight: 500;
@@ -120,13 +118,21 @@
   transition: all 0.2s ease;
   position: relative;
   cursor: pointer;
-  pointer-events: auto; /* Ensure clicks work */
-  display: inline-block; /* Better click area */
+  pointer-events: auto;
+  display: inline-block;
+}
+
+.header__nav-link--saved {
+  font-weight: 500;
+  font-size: 18px;
+  display: inline-block;
+  text-align: center;
+  line-height: 24px;
+  bottom: -1px;
+  margin-left: 20px;
 }
 
 .header__nav-link:hover {
-  opacity: 0.8;
-  background: rgba(255, 255, 255, 0.1);
 }
 
 .header__nav-link.active {
@@ -197,6 +203,7 @@
   background: none;
   margin-left: 20px;
   font-family: "RobotoSlab", serif;
+  width: 176px;
 }
 
 .header__login-button:hover {
@@ -271,14 +278,15 @@
   border: 1.5px solid white;
   border-radius: 50px;
   background: transparent;
-  padding: 4px 22px 4px 18px; /* More right padding for icon spacing */
-  margin-left: 32px; /* More space from nav links */
-  gap: 8px; /* Slightly tighter gap between name and icon */
+  padding: 4px 22px 4px 18px;
+  margin-left: 32px;
+  gap: 8px;
   cursor: pointer;
   transition: background 0.2s, border 0.2s;
   height: 40px;
   min-width: 120px;
   box-sizing: border-box;
+  margin-bottom: 7px;
 }
 .header__user-pill:hover {
   background: rgba(255, 255, 255, 0.08);
@@ -297,28 +305,109 @@
   height: 22px;
   filter: invert(1);
   margin-left: 0;
-  margin-right: -4px; /* Pull icon closer to pill edge */
+  margin-right: -4px;
+}
+/* Hide mobile hamburger on desktop/tablet */
+.header__mobile-menu-button {
+  display: none;
+}
+/* Tablet responsiveness */
+@media screen and (max-width: 1024px) {
+  .header {
+    width: 768px;
+    height: 66px;
+    margin-top: 22px;
+  }
+
+  .header__logo {
+    width: 200px;
+    font-weight: 700;
+    font-size: 20px;
+    color: white;
+    margin-top: -20px;
+  }
+
+  .header__nav-link {
+    width: 60px;
+    height: 24px;
+    font-weight: 500;
+    font-size: 16px;
+    margin-bottom: 24px;
+  }
+
+  .header__nav-link--saved {
+    width: 150px !important;
+    height: 11px !important;
+    font-weight: 500;
+    font-size: 16px;
+    display: inline-block;
+    text-align: center;
+    line-height: 24px;
+    bottom: 4px;
+    margin-left: 20px;
+    bottom: 7px;
+  }
+
+  .header__user-pill {
+    width: 100px;
+    height: 40px;
+    margin-top: -5px;
+  }
+
+  .header__user-name {
+    margin-bottom: 4px;
+    margin-right: -7px;
+    margin-left: -4px;
+  }
+
+  .header__login-button {
+    font-weight: 500;
+    font-size: 16px;
+    width: 152px;
+    height: 40px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .header__right {
+    column-gap: 5px;
+  }
 }
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
-  .header {
-    padding: 0 16px;
-    height: 56px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  header.header {
+    padding: 0 16px !important;
+    width: 100% !important;
+    height: 56px !important;
+    background: transparent !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 9999 !important;
+    border-bottom: 1px solid white !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    transform: translateZ(0) !important; /* Force hardware acceleration */
   }
 
   .header__logo {
-    font-size: 16px;
-    font-weight: 500;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    margin: 0;
   }
 
-  /* Hide desktop navigation on mobile */
-  .header__right--desktop {
+  .header__right {
     display: none;
   }
 
-  /* Mobile hamburger menu button */
   .header__mobile-menu-button {
     display: flex;
     flex-direction: column;
@@ -341,14 +430,6 @@
     border-radius: 1px;
   }
 
-  .header__mobile-menu-button--open .header__mobile-menu-line:first-child {
-    transform: rotate(45deg) translate(3px, 3px);
-  }
-
-  .header__mobile-menu-button--open .header__mobile-menu-line:last-child {
-    transform: rotate(-45deg) translate(3px, -3px);
-  }
-
   /* Mobile menu overlay */
   .header__mobile-menu {
     position: fixed;
@@ -368,6 +449,33 @@
     flex-direction: column;
     align-items: flex-start;
     padding: 20px;
+  }
+
+  /* Mobile menu logo with underline */
+  .header__mobile-logo {
+    position: absolute;
+    top: 0px;
+    left: -2px;
+    font-size: 20px;
+    font-weight: 700;
+    font-family: "RobotoSlab", serif;
+    color: white;
+    text-decoration: none;
+    z-index: 1002;
+    letter-spacing: 0.5px;
+    background: none;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .header__mobile-logo::after {
+    content: "";
+    position: absolute;
+    bottom: -12px;
+    left: -19px;
+    width: 320px;
+    height: 1px;
+    background-color: white;
   }
 
   /* Mobile close X button */
@@ -403,10 +511,7 @@
     transform: rotate(-45deg);
   }
 
-  .header__mobile-close-button:hover .header__mobile-close-line {
-    opacity: 0.7;
-  }
-
+  /* Mobile menu content */
   .header__mobile-menu-content {
     background-color: transparent;
     border-radius: 0;
@@ -414,15 +519,16 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 0;
     box-shadow: none;
-    margin-top: 60px;
+    margin-top: 15px;
   }
 
+  /* Mobile navigation link */
   .header__mobile-nav-link {
     color: white;
     text-decoration: none;
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 500;
     font-family: "RobotoSlab", serif;
     padding: 0;
@@ -431,6 +537,11 @@
     transition: opacity 0.2s;
     border: none;
     background: none;
+    width: 288px;
+    height: auto;
+    margin-top: 32px;
+    margin-bottom: 0;
+    margin-left: 0;
   }
 
   .header__mobile-nav-link:hover {
@@ -438,6 +549,7 @@
     background-color: transparent;
   }
 
+  /* Mobile sign in button */
   .header__mobile-login-button {
     color: white;
     background-color: transparent;
@@ -449,27 +561,29 @@
     font-family: "RobotoSlab", serif;
     cursor: pointer;
     transition: all 0.2s;
-    width: calc(100vw - 60px);
+    width: 280px;
+    height: 48px;
     text-align: center;
-    margin-top: 24px;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-top: 32px;
+    margin-left: 0;
+    margin-right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .header__mobile-login-button:hover {
     background-color: rgba(255, 255, 255, 0.1);
-    border: 1.5px solid #bbb;
-    background: #f5f5f5;
-
-    /* Hide mobile menu button on desktop */
-    color: black;
-    display: none;
+    color: white;
   }
-}
 
-/* Show mobile menu button only on mobile */
-@media (max-width: 768px) {
-  .header__mobile-menu-button {
-    display: flex;
+  /* Light theme hamburger lines */
+  .header--light .header__mobile-menu-line {
+    background-color: black;
+  }
+
+  /* Dark theme hamburger lines */
+  .header--dark .header__mobile-menu-line {
+    background-color: white;
   }
 }

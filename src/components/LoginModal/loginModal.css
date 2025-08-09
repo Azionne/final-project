@@ -12,10 +12,12 @@
 }
 
 .login-modal__input {
-  width: 100%;
+  width: 358px;
+  height: 47px;
   padding: 16px 20px;
-  border: 1px solid #d1d2d6;
-  border-radius: 8px;
+  border: none;
+  border-bottom: 1px solid #d1d2d6;
+  border-radius: 0;
   font-size: 16px;
   font-family: "RobotoSlab", serif;
   background-color: #ffffff;
@@ -57,7 +59,7 @@
   padding: 8px 0;
   text-align: center;
   transition: color 0.2s;
-  margin-top: 16px;
+  margin-top: -10px;
   outline: none;
 }
 

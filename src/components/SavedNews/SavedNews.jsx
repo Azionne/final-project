@@ -15,6 +15,13 @@ function SavedNews({
     return savedArticles.some((saved) => saved.url === article.url);
   };
 
+  // Debug logging
+  console.log("SavedNews props:", {
+    isLoggedIn,
+    userName,
+    savedArticlesLength: savedArticles.length,
+  });
+
   return (
     <>
       <Header
@@ -27,6 +34,18 @@ function SavedNews({
       />
       <div className="saved-news">
         <div className="saved-news__header">
+          {/* Temporary debug display */}
+          <div
+            style={{ background: "yellow", padding: "5px", margin: "5px 0" }}
+          >
+            DEBUG: isLoggedIn={String(isLoggedIn)}, userName="{userName}"
+          </div>
+
+          {/* Only add the yellow label when logged in */}
+          {isLoggedIn && userName && (
+            <h2 className="saved-news__article-text">Saved Articles</h2>
+          )}
+
           <h1 className="saved-news__title">
             {isLoggedIn && userName
               ? `${userName}, you have ${savedArticles.length} saved article${
@@ -34,6 +53,7 @@ function SavedNews({
                 }`
               : "Saved articles"}
           </h1>
+
           {isLoggedIn && userName && savedArticles.length > 0 && (
             <p
               className="saved-news__subtitle"

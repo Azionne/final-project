@@ -1,49 +1,34 @@
-/* Not found image styling for search results */
-.search-results__not-found-img {
-  display: block;
-  margin: 0 auto 24px auto;
-  width: 96px;
-  height: 96px;
-  opacity: 0.6;
-}
-
-/* Main Component Styles - NewsExplorer Hero Section */
 .main {
   position: relative;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
 .main__hero {
   padding: 0;
   height: 576px;
+  width: 1440px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   background-image: url("../../assets/background image.jpg");
   background-size: cover;
   background-position: center;
+  background-repeat: none;
   position: relative;
   box-sizing: border-box;
 }
 
-.main__hero::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 1;
-}
-
-.main__hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 1200px;
-  margin: 0 auto;
+.main__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   padding: 0 40px;
-  width: 100%;
-  box-sizing: border-box;
+  max-width: 600px;
+  margin-left: 415px;
 }
 
 .main__title {
@@ -55,166 +40,254 @@
   max-width: 800px;
 }
 
-.main__description {
+.main__subtitle {
+  font-family: "Inter", sans-serif;
   font-size: 18px;
-  line-height: 1.6;
-  color: white;
-  margin: 0 0 40px;
-  max-width: 540px;
+  line-height: 1.33;
+  color: #ffffff;
+  margin: 0 0 64px 0;
 }
 
 /* Search Results Section */
-.search-results {
-  background-color: #f5f5f5;
-  padding: 60px 20px;
+.main__search-results {
+  padding: 80px 0;
+  background-color: #f5f6f7;
 }
 
-.search-results__container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.search-results__title {
+.main__search-results-title {
   font-family: "RobotoSlab", serif;
-  font-size: 32px;
-  font-weight: 600;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 1.15;
   color: #1a1b22;
-  margin: 0 0 32px;
+  text-align: left;
+  margin: 0 0 64px 0;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 40px;
 }
 
-.search-results__cards {
+.main__cards-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  box-sizing: border-box;
-  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 16px;
+  max-width: 1440px;
+  margin: 0 auto 64px;
+  padding: 0 40px;
 }
 
-.search-results__show-more {
+.main__show-more-button {
   display: block;
-  margin: 40px auto 0;
-  padding: 16px 32px;
-  background: white;
-  border: 1px solid #2f71e5;
-  border-radius: 32px;
-  font-size: 16px;
-  font-weight: 500;
-  color: #2f71e5;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.search-results__show-more:hover {
-  opacity: 0.8;
-}
-
-.search-results__show-more:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(47, 113, 229, 0.3);
-}
-
-.search-results__not-found {
-  text-align: center;
-  padding: 60px 0;
-}
-
-.search-results__not-found-title {
-  font-family: "RobotoSlab", serif;
-  font-size: 28px;
-  font-weight: 600;
-  margin: 0 0 16px;
-  color: #1a1b22;
-}
-
-.search-results__not-found-text {
-  font-size: 18px;
-  line-height: 1.5;
-  color: #5e637a;
   margin: 0 auto;
-  max-width: 500px;
+  padding: 14px 20px;
+  background-color: #2f71e5;
+  color: #ffffff;
+  border: none;
+  border-radius: 100px;
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  line-height: 24px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-/* Tablet Responsiveness */
-@media (max-width: 1024px) {
-  .main__hero {
-    height: 480px;
-  }
-
-  .main__title {
-    font-size: 48px;
-    margin-bottom: 16px;
-  }
-
-  .main__description {
-    font-size: 16px;
-    margin-bottom: 32px;
-  }
-
-  .search-results__cards {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.main__show-more-button:hover {
+  background-color: #1a5ad7;
 }
 
-/* Mobile Responsiveness */
-@media (max-width: 767px) {
-  .main__hero {
-    height: 420px;
+.main__show-more-button:disabled {
+  background-color: #b6bcbf;
+  cursor: not-allowed;
+}
+
+/* Error State */
+.main__search-error {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 40px;
+  text-align: center;
+}
+
+.main__search-error-text {
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  line-height: 1.33;
+  color: #1a1b22;
+  margin: 0;
+}
+
+/* Nothing Found State */
+.main__nothing-found {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 40px;
+  text-align: center;
+}
+
+.main__not-found-image {
+  width: 96px;
+  height: 96px;
+  margin: 0 0 40px 0;
+}
+
+.main__nothing-found-title {
+  font-family: "RobotoSlab", serif;
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 1.15;
+  color: #1a1b22;
+  margin: 0 0 24px 0;
+}
+
+.main__nothing-found-text {
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  line-height: 1.33;
+  color: #5e637a;
+  margin: 0;
+}
+
+/* Tablet responsiveness */
+@media screen and (max-width: 1024px) {
+  .main {
+    width: 768px;
   }
 
-  .main__hero-content {
+  .main__hero {
+    width: 768px;
+  }
+
+  .main__content {
+    max-width: 500px;
     padding: 0 20px;
+    margin-left: 145px;
   }
 
   .main__title {
     font-size: 36px;
-    margin-bottom: 16px;
+    width: 385px;
+    text-align: left;
+    font-weight: 400; /* Fixed: removed "px" */
+    color: white; /* Add missing color */
+    margin-right: 60px;
   }
 
-  .main__description {
-    font-size: 16px;
-    margin-bottom: 24px;
+  .main__subtitle {
+    font-size: 18px;
+    font-weight: 400; /* Fixed: removed "px" */
+    max-width: 452px;
+    text-align: left;
+    color: white; /* Add missing color */
   }
 
-  .search-results {
-    padding: 40px 16px;
+  .main__search-results {
+    padding: 60px 0;
   }
 
-  .search-results__title {
-    font-size: 24px;
-    margin-bottom: 24px;
+  .main__search-results-title {
+    font-size: 32px;
+    margin-bottom: 48px;
+    padding: 0 20px;
   }
 
-  .search-results__cards {
-    grid-template-columns: 1fr;
-    max-width: 288px;
-    margin: 0 auto;
-  }
-
-  .search-results__not-found-title {
-    font-size: 24px;
-  }
-
-  .search-results__not-found-text {
-    font-size: 16px;
-    padding: 0 16px;
+  .main__cards-container {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    padding: 0 20px;
+    margin-bottom: 48px;
   }
 }
 
-/* Small Mobile Responsiveness */
-@media (max-width: 420px) {
+/* Mobile responsiveness - FIXED VERSION */
+@media screen and (max-width: 768px) {
+  .main {
+    width: 100%; /* Changed from 320px to 100% */
+    max-width: 320px; /* Added max-width instead */
+    margin: 0 auto !important;
+    padding-top: 56px; /* Add padding to main instead of hero */
+  }
+
   .main__hero {
+    width: 100%;
+    max-width: 320px;
     height: 536px;
+    padding-top: 0; /* Remove padding from hero */
+    box-sizing: border-box;
+    margin-top: -56px; /* Negative margin to account for main padding */
+  }
+
+  .main__content {
+    width: 100%;
+    max-width: 288px;
+    padding: 16px !important;
+    text-align: center;
+    margin: 0 auto;
   }
 
   .main__title {
-    font-size: 30px;
+    font-family: "RobotoSlab", serif !important;
+    font-size: 36px !important;
+    font-weight: 400 !important;
+    width: 285px;
+    height: 80px;
+    margin: 20px 0 !important;
+    text-align: left;
+    position: absolute;
+    top: 55px; /* Back to original position since we moved padding */
+    left: 25px;
+    color: white;
   }
 
-  .main__description {
-    font-size: 15px;
+  .main__subtitle {
+    font-family: "Inter", sans-serif !important;
+    font-size: 18px !important;
+    position: absolute;
+    bottom: 220px;
+    left: 25px;
+    color: white;
   }
 
-  .search-results__cards {
-    max-width: 288px;
+  .main__search-results {
+    padding: 40px 0;
+  }
+
+  .main__search-results-title {
+    font-size: 24px;
+    margin-bottom: 32px;
+    padding: 0 16px;
+  }
+
+  .main__cards-container {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 0 16px;
+    margin-bottom: 32px;
+  }
+
+  .main__show-more-button {
+    padding: 12px 16px;
+    font-size: 16px;
+  }
+
+  .main__search-error,
+  .main__nothing-found {
+    padding: 0 16px;
+  }
+
+  .main__not-found-image {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 24px;
+  }
+
+  .main__nothing-found-title {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+
+  .main__nothing-found-text,
+  .main__search-error-text {
+    font-size: 16px;
   }
 }
