@@ -78,7 +78,7 @@ export default function RegisterModal(props) {
       buttonPosition="none" // Don't auto-add button
     >
       <label className="register-modal__label">
-        Name *
+        Name
         <input
           type="text"
           className="register-modal__input"
@@ -89,7 +89,7 @@ export default function RegisterModal(props) {
         />
       </label>
       <label className="register-modal__label">
-        Email *
+        Email
         <input
           type="email"
           className="register-modal__input"
@@ -103,7 +103,7 @@ export default function RegisterModal(props) {
         )}
       </label>
       <label className="register-modal__label">
-        Password *
+        Password
         <input
           type="password"
           className="register-modal__input"

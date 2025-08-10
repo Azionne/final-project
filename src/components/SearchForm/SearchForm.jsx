@@ -32,16 +32,22 @@ function SearchForm({ onSubmit }) {
             type="text"
             placeholder="Enter topic"
             className={`search-form__input ${
-              error ? "search-form__input_error" : ""
+              error ? "search-form__input--error" : ""
             }`}
             value={query}
             onChange={handleInputChange}
+            aria-describedby={error ? "search-error" : undefined}
+            aria-invalid={error ? "true" : "false"}
           />
           <button type="submit" className="search-form__button">
             Search
           </button>
         </div>
-        {error && <p className="search-form__error">{error}</p>}
+        {error && (
+          <p id="search-error" className="search-form__error" role="alert">
+            {error}
+          </p>
+        )}
       </div>
     </form>
   );

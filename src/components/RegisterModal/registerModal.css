@@ -68,7 +68,7 @@
   padding: 8px 0;
   text-align: center;
   transition: color 0.2s;
-  margin-top: 8px;
+  margin-left: 145px;
 }
 
 .register-modal__switch-button:hover {
@@ -167,5 +167,13 @@
     width: 100%;
     max-width: 320px;
     margin: 0 auto 20px;
+    color: #2f71e5;
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .register-modal__switch-button {
+    align-items: center;
+    margin-left: 120px;
   }
 }

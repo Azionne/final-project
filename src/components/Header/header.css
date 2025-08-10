@@ -5,44 +5,56 @@
 .header--dark .header__logo,
 .header--dark .header__nav-link,
 .header--dark .header__user-name,
-.header--dark .header__user-pill {
+.header--dark .header__user-button {
   color: white;
 }
 .header--dark .header__logout-icon {
   filter: invert(1);
 }
+.header--dark .header__menu-line {
+  background-color: white;
+}
 
 .header--light {
+  position: static;
+  background-color: white;
+  color: black;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* More specific selectors for light theme */
+header.header--light .header__logo,
+.header.header--light .header__logo,
+.header--light .header__logo {
   color: black;
 }
-.header--light .header__logo,
+
 .header--light .header__nav-link,
 .header--light .header__user-name {
   color: black;
 }
-.header--light .header__user-pill {
+.header--light .header__user-button {
   color: black;
-  background: transparent;
   border: 1.5px solid #000;
 }
 .header--light .header__logout-icon {
   filter: invert(0);
 }
-
-/* Mobile menu NewsExplorer logo */
-.header__mobile-logo {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  font-size: 20px;
-  font-weight: 700;
-  font-family: "RobotoSlab", serif;
-  color: white;
-  text-decoration: none;
-  z-index: 1002;
-  letter-spacing: 0.5px;
-  background: none;
-  cursor: pointer;
+.header--light .header__login-button {
+  color: black;
+  border: 2px solid black;
+}
+.header--light .header__register-button {
+  color: black;
+}
+.header--light .header__register-button::after {
+  background-color: black;
+}
+.header--light .header__nav-link.active::after {
+  background-color: black;
+}
+.header--light .header__menu-line {
+  background-color: black;
 }
 
 .header {
@@ -71,18 +83,32 @@
   background-repeat: no-repeat;
 }
 
-.header__left {
+.header__container {
   display: flex;
   align-items: center;
   gap: 24px;
   flex: 1;
 }
 
-.header__right {
+.header__navigation {
   display: flex;
   align-items: center;
   gap: 36px;
   margin-left: auto;
+}
+
+.header__nav-list {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.header__nav-item {
+  margin: 0;
+  padding: 0;
 }
 
 .header__logo {
@@ -123,6 +149,7 @@
 }
 
 .header__nav-link--saved {
+  width: 160px;
   font-weight: 500;
   font-size: 18px;
   display: inline-block;
@@ -233,6 +260,12 @@
   object-fit: cover;
 }
 
+.header__user-section {
+  display: flex;
+  align-items: center;
+  margin-left: 36px;
+}
+
 .header__username {
   margin: 0;
   font-weight: 700;
@@ -272,7 +305,7 @@
 }
 
 /* User pill and logout button for header */
-.header__user-pill {
+.header__user-button {
   display: flex;
   align-items: center;
   border: 1.5px solid white;
@@ -288,10 +321,12 @@
   box-sizing: border-box;
   margin-bottom: 7px;
 }
-.header__user-pill:hover {
+
+.header__user-button:hover {
   background: rgba(255, 255, 255, 0.08);
   border-color: #e5e5e5;
 }
+
 .header__user-name {
   color: white;
   font-family: "RobotoSlab", serif;
@@ -300,6 +335,7 @@
   margin-right: 0;
   letter-spacing: 0.01em;
 }
+
 .header__logout-icon {
   width: 22px;
   height: 22px;
@@ -307,94 +343,151 @@
   margin-left: 0;
   margin-right: -4px;
 }
+
 /* Hide mobile hamburger on desktop/tablet */
-.header__mobile-menu-button {
+.header__menu {
   display: none;
 }
-/* Tablet responsiveness */
-@media screen and (max-width: 1024px) {
+
+/* ===================== TABLET STYLES ===================== */
+@media screen and (max-width: 1024px) and (min-width: 769px) {
   .header {
-    width: 768px;
-    height: 66px;
-    margin-top: 22px;
+    width: 100%;
+    height: 80px;
+    padding: 0 20px;
+  }
+
+  .header__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0;
+    width: 100%;
+    padding: 0;
   }
 
   .header__logo {
-    width: 200px;
-    font-weight: 700;
     font-size: 20px;
+    font-weight: 700;
     color: white;
-    margin-top: -20px;
+    margin: 0;
+    margin-right: 32px;
+    flex-shrink: 0;
+  }
+
+  /* Tablet light theme logo override */
+  header.header--light .header__logo,
+  .header.header--light .header__logo,
+  .header--light .header__logo {
+    color: black !important;
+  }
+
+  .header__navigation {
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-end; /* Move nav to the right */
+    gap: 24px;
+    margin-left: auto; /* Push nav to the right */
+    margin-right: 0; /* Adjust as needed */
+    flex: unset; /* Remove flex: 1 1 auto */
+  }
+
+  .header__nav-list {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin: 0;
+    padding: 0;
+    margin-right: -75px;
   }
 
   .header__nav-link {
-    width: 60px;
-    height: 24px;
-    font-weight: 500;
     font-size: 16px;
-    margin-bottom: 24px;
+    font-weight: 500;
+    padding: 8px 12px;
+    color: black !important;
   }
 
   .header__nav-link--saved {
-    width: 150px !important;
-    height: 11px !important;
-    font-weight: 500;
     font-size: 16px;
-    display: inline-block;
-    text-align: center;
-    line-height: 24px;
-    bottom: 4px;
+    font-weight: 500;
     margin-left: 20px;
-    bottom: 7px;
   }
 
-  .header__user-pill {
-    width: 100px;
+  .header__user-section {
+    margin-left: 32px;
+    flex-shrink: 0;
+  }
+
+  .header__user-button {
     height: 40px;
-    margin-top: -5px;
+    padding: 4px 20px 4px 16px;
+    min-width: 110px;
+    font-size: 16px;
+    color: black !important;
+    border: 1.5px solid #000;
+    background: #fff;
   }
 
   .header__user-name {
-    margin-bottom: 4px;
-    margin-right: -7px;
-    margin-left: -4px;
-  }
-
-  .header__login-button {
-    font-weight: 500;
     font-size: 16px;
-    width: 152px;
-    height: 40px;
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 0;
-    box-sizing: border-box;
+    color: black !important;
   }
 
-  .header__right {
-    column-gap: 5px;
+  .header__actions {
+    display: flex !important;
+    gap: 32px;
+    margin-right: 104px;
+  }
+
+  .header__menu-button {
+    display: none !important;
   }
 }
 
-/* Mobile responsiveness */
+/* ===================== MOBILE STYLES ===================== */
 @media (max-width: 768px) {
   header.header {
-    padding: 0 16px !important;
-    width: 100% !important;
-    height: 56px !important;
-    background: transparent !important;
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    z-index: 9999 !important;
-    border-bottom: 1px solid white !important;
-    margin: 0 !important;
-    box-sizing: border-box !important;
-    transform: translateZ(0) !important; /* Force hardware acceleration */
+    padding: 0 16px;
+    width: 100%;
+    height: 56px;
+    background: transparent;
+
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    border-bottom: 1px solid white;
+    margin: 0;
+    box-sizing: border-box;
+    transform: translateZ(0);
+  }
+
+  .header--light.header {
+    background: white;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  /* More specific mobile selectors for light theme */
+  header.header--light .header__logo,
+  .header.header--light .header__logo,
+  .header--light .header__logo {
+    color: black;
+  }
+
+  /* Mobile dark theme selectors */
+  header.header--dark .header__logo,
+  .header.header--dark .header__logo,
+  .header--dark .header__logo {
+    color: white;
+  }
+
+  .header--light .header__menu-line {
+    background-color: black;
+  }
+
+  .header--dark .header__menu-line {
+    background-color: white;
   }
 
   .header__logo {
@@ -404,12 +497,16 @@
     margin: 0;
   }
 
-  .header__right {
-    display: none;
+  .header__navigation {
+    display: none !important;
   }
 
-  .header__mobile-menu-button {
-    display: flex;
+  .header__actions {
+    display: none !important;
+  }
+
+  .header__menu-button {
+    display: flex !important;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -420,9 +517,10 @@
     cursor: pointer;
     padding: 0;
     gap: 4px;
+    margin-left: 105px;
   }
 
-  .header__mobile-menu-line {
+  .header__menu-line {
     width: 16px;
     height: 2px;
     background-color: white;
@@ -430,8 +528,7 @@
     border-radius: 1px;
   }
 
-  /* Mobile menu overlay */
-  .header__mobile-menu {
+  .header__mobile-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -447,42 +544,41 @@
     z-index: 1001;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    padding: 20px;
+    padding: 0;
   }
 
-  /* Mobile menu logo with underline */
-  .header__mobile-logo {
-    position: absolute;
-    top: 0px;
-    left: -2px;
+  .header__mobile-header {
+    position: relative;
+    width: 100%;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    background-color: #1a1b22;
+    border-bottom: 1px solid white;
+  }
+
+  .header__logo--mobile {
+    position: static;
     font-size: 20px;
     font-weight: 700;
     font-family: "RobotoSlab", serif;
     color: white;
     text-decoration: none;
-    z-index: 1002;
     letter-spacing: 0.5px;
     background: none;
     cursor: pointer;
-    position: relative;
   }
 
-  .header__mobile-logo::after {
-    content: "";
-    position: absolute;
-    bottom: -12px;
-    left: -19px;
-    width: 320px;
-    height: 1px;
-    background-color: white;
+  /* Force mobile overlay logo to be white regardless of theme */
+  .header__mobile-overlay .header__logo--mobile,
+  .header__mobile-header .header__logo--mobile {
+    color: white;
   }
 
-  /* Mobile close X button */
-  .header__mobile-close-button {
-    position: absolute;
-    top: 17px;
-    right: 20px;
+  .header__close-button {
+    position: static;
     width: 24px;
     height: 24px;
     background: none;
@@ -492,10 +588,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1002;
   }
 
-  .header__mobile-close-line {
+  .header__close-line {
     position: absolute;
     width: 20px;
     height: 2px;
@@ -503,45 +598,58 @@
     transition: all 0.3s ease;
   }
 
-  .header__mobile-close-line:first-child {
+  .header__close-line:first-child {
     transform: rotate(45deg);
   }
 
-  .header__mobile-close-line:last-child {
+  .header__close-line:last-child {
     transform: rotate(-45deg);
   }
 
-  /* Mobile menu content */
-  .header__mobile-menu-content {
-    background-color: transparent;
+  .header__mobile-navigation {
+    background-color: #1a1b22;
     border-radius: 0;
-    padding: 0;
+    padding: 20px;
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 0;
     box-shadow: none;
-    margin-top: 15px;
+    flex: 1;
   }
 
-  /* Mobile navigation link */
+  .header__mobile-nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  .header__mobile-nav-item {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+
   .header__mobile-nav-link {
     color: white;
     text-decoration: none;
     font-size: 18px;
     font-weight: 500;
     font-family: "RobotoSlab", serif;
-    padding: 0;
+    padding: 16px 0;
     border-radius: 0;
     text-align: left;
     transition: opacity 0.2s;
     border: none;
     background: none;
-    width: 288px;
+    width: 100%;
     height: auto;
-    margin-top: 32px;
-    margin-bottom: 0;
-    margin-left: 0;
+    margin: 0;
+    display: block;
   }
 
   .header__mobile-nav-link:hover {
@@ -549,8 +657,7 @@
     background-color: transparent;
   }
 
-  /* Mobile sign in button */
-  .header__mobile-login-button {
+  .header__mobile-action-button {
     color: white;
     background-color: transparent;
     border: 2px solid white;
@@ -561,29 +668,22 @@
     font-family: "RobotoSlab", serif;
     cursor: pointer;
     transition: all 0.2s;
-    width: 280px;
+    width: 100%;
+    max-width: 280px;
     height: 48px;
     text-align: center;
     margin-top: 32px;
-    margin-left: 0;
-    margin-right: 0;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  .header__mobile-login-button:hover {
+  .header__mobile-action-button:hover {
     background-color: rgba(255, 255, 255, 0.1);
-    color: white;
+    color: white !important;
   }
-
-  /* Light theme hamburger lines */
-  .header--light .header__mobile-menu-line {
-    background-color: black;
-  }
-
-  /* Dark theme hamburger lines */
-  .header--dark .header__mobile-menu-line {
-    background-color: white;
+  .header__mobile-header .header__logo--mobile,
+  .header__mobile-overlay .header__logo--mobile {
+    color: #fff !important;
   }
 }

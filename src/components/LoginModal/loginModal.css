@@ -1,5 +1,10 @@
 /* Login Modal Specific Styles */
-
+.login-modal__form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
 .login-modal__label {
   display: flex;
   flex-direction: column;
@@ -7,7 +12,7 @@
   font-family: "RobotoSlab", serif;
   font-size: 14px;
   font-weight: 500;
-  color: #1a1b22;
+  color: #2f71e5;
   margin-bottom: 24px;
 }
 
@@ -36,6 +41,13 @@
   font-style: italic;
 }
 
+.login-modal__error-message {
+  color: #ff0000;
+  font-size: 14px;
+  margin-top: 4px;
+}
+/* Style for field-specific errors */
+
 .login-modal__error {
   color: #ff6b6b;
   font-size: 14px;
@@ -47,7 +59,18 @@
   font-family: "RobotoSlab", serif;
 }
 
+.login-modal__form,
+.modal__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__submit-button {
+  order: 1;
+}
+
 .login-modal__switch-button {
+  order: 2;
   background: none !important;
   border: none !important;
   color: #2f71e5 !important;
@@ -59,7 +82,7 @@
   padding: 8px 0;
   text-align: center;
   transition: color 0.2s;
-  margin-top: -10px;
+  margin-left: 140px;
   outline: none;
 }
 
@@ -68,4 +91,131 @@
   border: none !important;
   color: #1e5bb8 !important;
   text-decoration: none;
+}
+
+/* Tablet (769px–1024px) */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .login-modal__input {
+    width: 100%;
+    min-width: 0;
+    font-size: 15px;
+    padding: 14px 14px;
+  }
+
+  .login-modal__form-section {
+    gap: 7px;
+    margin-bottom: 14px;
+  }
+
+  .login-modal__label {
+    font-size: 13px;
+    margin-bottom: 18px;
+  }
+
+  .modal__submit-button {
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 0;
+  }
+
+  .login-modal__switch-button {
+    width: 100%;
+    margin-left: 0;
+    font-size: 15px;
+    padding: 10px 0 0 0;
+    text-align: center;
+  }
+
+  .login-modal__error {
+    font-size: 13px;
+    padding: 10px 12px;
+    margin: 12px 0;
+  }
+}
+
+/* iPad/small tablet (exact 768px width) */
+@media (width: 768px) {
+  .login-modal__input {
+    width: 100%;
+    min-width: 0;
+    font-size: 15px;
+    padding: 12px 12px;
+  }
+
+  .login-modal__form-section {
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+
+  .login-modal__label {
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+
+  .modal__submit-button {
+    width: 100%;
+    font-size: 15px;
+    padding: 10px 0;
+  }
+
+  .login-modal__switch-button {
+    width: 100%;
+    margin-left: 0;
+    font-size: 14px;
+    padding: 8px 0 0 0;
+    text-align: center;
+  }
+
+  .login-modal__error {
+    font-size: 12px;
+    padding: 8px 8px;
+    margin: 8px 0;
+  }
+}
+
+/* Mobile (up to 768px) */
+@media (max-width: 768px) {
+  form.login-modal__form {
+    width: 288px !important;
+    min-width: 0;
+    font-size: 14px;
+    padding: 10px 8px;
+    margin-left: 16px;
+  }
+
+  .login-modal__input {
+    width: 288px;
+    font-size: 14px;
+  }
+
+  .login-modal__form-section {
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+
+  .login-modal__label {
+    font-size: 12px;
+    margin-bottom: 12px;
+    margin-left: 16px;
+  }
+
+  .modal__submit-button {
+    width: 100%;
+    font-size: 15px;
+    padding: 10px 0;
+  }
+
+  .login-modal__switch-button {
+    width: 100%;
+    margin-left: 0;
+    font-size: 14px;
+    padding: 8px 0 0 0;
+    text-align: center;
+  }
+
+  .login-modal__error {
+    font-size: 12px;
+    padding: 8px 8px;
+    margin: 8px 0;
+  }
 }

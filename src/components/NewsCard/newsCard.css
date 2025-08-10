@@ -285,3 +285,10 @@
     font-size: 13px;
   }
 }
+
+.saved-news__articles-list,
+.saved-news__articles-list li {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}

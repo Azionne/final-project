@@ -1,5 +1,5 @@
 /* Specific styles for the successful registration modal inside modal__content */
-.modal__content > .modal__successfull-registration {
+.modal__container > .modal__successfull-registration {
   width: 315px;
   height: 56px;
   margin: 0 auto;
@@ -24,7 +24,14 @@
   z-index: 1000;
 }
 
-.modal_opened {
+.modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.modal--opened {
   visibility: visible;
 }
 
@@ -38,7 +45,7 @@
   text-align: left;
 }
 
-.modal__content {
+.modal__container {
   background-color: #ffffff;
   position: relative;
   padding: 36px;
@@ -53,40 +60,60 @@
   border-radius: 20px;
 }
 
-.modal__close {
+.modal__close-button {
   position: absolute;
-  top: -30px;
+  top: -45px;
   right: -50px;
+  width: 32px;
+  height: 32px;
+  background: none;
   border: none;
-  background-color: transparent;
   cursor: pointer;
-  width: 24px;
-  height: 24px;
-  padding: 0;
+  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
+  padding: 0;
 }
 
-.modal__close:before,
-.modal__close:after {
+.modal__close-icon {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  display: block;
+  color: white;
+}
+
+.modal__close-icon::before,
+.modal__close-icon::after {
   content: "";
   position: absolute;
+  left: 0;
   top: 50%;
-  left: 50%;
-  width: 20px;
-  height: 2px;
-  background-color: #ffffff;
-  transform: translate(-50%, -50%) rotate(45deg);
+  width: 24px;
+  height: 3px;
+  background: #fff;
+  border-radius: 2px;
+  transform: translateY(-50%) rotate(45deg);
 }
 
-.modal__close:after {
-  transform: translate(-50%, -50%) rotate(-45deg);
+.modal__close-icon::after {
+  transform: translateY(-50%) rotate(-45deg);
 }
-
-.modal__close:hover {
+.modal__close-button:hover {
   opacity: 0.6;
+}
+
+.modal__close-icon {
+  /* new class for close icon */
+  width: 16px;
+  height: 16px;
+  position: relative;
+}
+
+.modal__form-content {
+  /* new wrapper for form fields */
+  /* add any spacing or layout styles */
 }
 
 .modal__form {
@@ -247,16 +274,71 @@ input[type="radio"] {
 
 /* Mobile responsiveness for modal dimensions */
 @media (max-width: 768px) {
-  .modal__content {
-    width: calc(100vw - 40px);
-    height: auto;
-    max-width: 380px;
-    margin: 20px;
-    padding: 28px 24px;
+  .modal__container {
+    width: 100%;
+    height: 560px;
+    padding: 16px 6px;
+    border-radius: 10px;
+    margin-bottom: 504px;
   }
+  .modal__title {
+    font-size: 18px;
+    margin-bottom: 14px;
+    margin-left: 16px;
+  }
+  .modal__close-button {
+    top: -35px;
+    right: 20px;
+    width: 22px;
+    height: 22px;
+  }
+  .modal__submit-button {
+    font-size: 15px;
+    padding: 12px 0;
+    width: 288px;
+    height: 54px;
+  }
+  .modal__form {
+    gap: 12px;
+  }
+}
 
+/* Tablet (769px–1024px) */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .modal__container {
+    width: 90vw;
+    max-width: 500px;
+    padding: 28px 20px;
+    min-height: 320px;
+  }
+  .modal__title {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+  .modal__close-button {
+    top: -35px;
+    right: -35px;
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* iPad/small tablet (exact 768px width) */
+@media (width: 768px) {
+  .modal__container {
+    width: 95vw;
+    max-width: 420px;
+    padding: 22px 12px;
+    min-height: 280px;
+  }
   .modal__title {
     font-size: 20px;
-    margin-bottom: 24px;
+    margin-bottom: 18px;
+  }
+  .modal__close-button {
+    top: -28px;
+    right: -28px;
+    width: 24px;
+    height: 24px;
   }
 }

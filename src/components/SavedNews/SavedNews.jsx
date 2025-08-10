@@ -1,6 +1,6 @@
 import "./savedNews.css";
-import Header from "../Header/Header.jsx";
 import NewsCard from "../NewsCard/NewsCard.jsx";
+import Header from "../Header/Header.jsx";
 
 function SavedNews({
   isLoggedIn,
@@ -15,35 +15,36 @@ function SavedNews({
     return savedArticles.some((saved) => saved.url === article.url);
   };
 
-  // Debug logging
-  console.log("SavedNews props:", {
-    isLoggedIn,
-    userName,
-    savedArticlesLength: savedArticles.length,
-  });
+  // Calculate unique keywords for display
+  const getUniqueKeywords = () => {
+    const keywords = savedArticles
+      .map((article) => article.keyword)
+      .filter(Boolean)
+      .filter((keyword, index, array) => array.indexOf(keyword) === index);
+
+    if (keywords.length === 0) return "";
+    if (keywords.length <= 2) return keywords.join(", ");
+
+    return `${keywords.slice(0, 2).join(", ")}, and ${
+      keywords.length - 2
+    } other${keywords.length - 2 > 1 ? "s" : ""}`;
+  };
 
   return (
-    <>
+    <div className="saved-news">
       <Header
         isLoggedIn={isLoggedIn}
-        userName={userName}
         onSignInClick={onSignInClick}
         onSignUpClick={onSignUpClick}
         onLogout={onLogout}
+        userName={userName}
         theme="light"
       />
-      <div className="saved-news">
-        <div className="saved-news__header">
-          {/* Temporary debug display */}
-          <div
-            style={{ background: "yellow", padding: "5px", margin: "5px 0" }}
-          >
-            DEBUG: isLoggedIn={String(isLoggedIn)}, userName="{userName}"
-          </div>
 
-          {/* Only add the yellow label when logged in */}
+      <section className="saved-news__hero">
+        <div className="saved-news__hero-content">
           {isLoggedIn && userName && (
-            <h2 className="saved-news__article-text">Saved Articles</h2>
+            <p className="saved-news__label">Saved articles</p>
           )}
 
           <h1 className="saved-news__title">
@@ -55,30 +56,32 @@ function SavedNews({
           </h1>
 
           {isLoggedIn && userName && savedArticles.length > 0 && (
-            <p
-              className="saved-news__subtitle"
-              style={{ fontWeight: 400, fontSize: "16px", marginTop: "8px" }}
-            >
+            <p className="saved-news__subtitle">
               By keywords:{" "}
-              <span style={{ fontWeight: 600 }}>
-                Nature, Yellowstone, and 2 other
+              <span className="saved-news__keywords">
+                {getUniqueKeywords()}
               </span>
             </p>
           )}
+
           {!isLoggedIn && (
             <p className="saved-news__subtitle">
               Please log in to view your saved articles.
             </p>
           )}
         </div>
+      </section>
 
-        {isLoggedIn ? (
-          <>
-            {savedArticles.length > 0 ? (
-              <div className="saved-news__articles">
-                {savedArticles.map((article, index) => (
+      {isLoggedIn ? (
+        <section className="saved-news__articles-section">
+          {savedArticles.length > 0 ? (
+            <ul className="saved-news__articles-list">
+              {savedArticles.map((article, index) => (
+                <li
+                  key={`${article.url}-${index}`}
+                  className="saved-news__article-item"
+                >
                   <NewsCard
-                    key={`${article.url}-${index}`}
                     article={article}
                     isLoggedIn={isLoggedIn}
                     onSave={(article) =>
@@ -87,24 +90,28 @@ function SavedNews({
                     isSaved={isArticleSaved(article)}
                     showDelete={true}
                   />
-                ))}
-              </div>
-            ) : (
-              <div className="article-placeholder">
-                <h3>No saved articles yet</h3>
-                <p>
-                  Start exploring news and save articles you find interesting!
-                </p>
-              </div>
-            )}
-          </>
-        ) : (
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <div className="saved-news__empty-state">
+              <h2 className="saved-news__empty-title">No saved articles yet</h2>
+              <p className="saved-news__empty-text">
+                Start exploring news and save articles you find interesting!
+              </p>
+            </div>
+          )}
+        </section>
+      ) : (
+        <section className="saved-news__login-section">
           <div className="saved-news__login-prompt">
-            <p>Log in to access your saved articles collection.</p>
+            <p className="saved-news__login-text">
+              Log in to access your saved articles collection.
+            </p>
           </div>
-        )}
-      </div>
-    </>
+        </section>
+      )}
+    </div>
   );
 }
 

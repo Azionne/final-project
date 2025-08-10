@@ -1,8 +1,8 @@
 import "./main.css";
-import Header from "../Header/Header.jsx";
 import SearchForm from "../SearchForm/SearchForm.jsx";
 import NewsCard from "../NewsCard/NewsCard.jsx";
 import Preloader from "../Preloader/Preloader.jsx";
+import { About } from "../About/About.jsx";
 import notFoundImg from "../../assets/not-found_v1.svg";
 import { useState } from "react";
 
@@ -67,7 +67,7 @@ export function Main({
             <img
               src={notFoundImg}
               alt="No search results found"
-              className="main__not-found-image"
+              className="main__nothing-found-image"
             />
             <h3 className="main__nothing-found-title">Nothing found</h3>
             <p className="main__nothing-found-text">
@@ -89,13 +89,9 @@ export function Main({
         <h2 id="search-results-title" className="main__search-results-title">
           Search results
         </h2>
-        <div
-          className="main__cards-container"
-          role="list"
-          aria-label={`${articles.length} search results found`}
-        >
+        <ul className="main__cards-list">
           {articles.slice(0, visibleCards).map((article, index) => (
-            <div key={`${article.url}-${index}`} role="listitem">
+            <li key={`${article.url}-${index}`} className="main__card-item">
               <NewsCard
                 article={article}
                 isLoggedIn={isLoggedIn}
@@ -103,9 +99,9 @@ export function Main({
                 isSaved={isArticleSaved(article)}
                 showDelete={false}
               />
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
         {visibleCards < articles.length && (
           <button
             className="main__show-more-button"
@@ -126,26 +122,19 @@ export function Main({
   };
 
   return (
-    <main className="main" role="main">
-      <Header
-        isLoggedIn={isLoggedIn}
-        userName={userName}
-        onSignInClick={onSignInClick}
-        onSignUpClick={onSignUpClick}
-        onLogout={onLogout}
-        theme="dark"
-      />
-      <header className="main__hero">
-        <section className="main__content">
+    <div className="main">
+      <section className="main__hero">
+        <div className="main__hero-content">
           <h1 className="main__title">What's going on in the world?</h1>
           <p className="main__subtitle">
             Find the latest news on any topic and save them in your personal
             account.
           </p>
           <SearchForm onSubmit={onSearch} />
-        </section>
-      </header>
+        </div>
+      </section>
       {renderSearchResults()}
-    </main>
+      <About />
+    </div>
   );
 }

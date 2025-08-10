@@ -21,7 +21,7 @@
   box-sizing: border-box;
 }
 
-.main__content {
+.main__hero-content {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -68,13 +68,18 @@
   padding: 0 40px;
 }
 
-.main__cards-container {
+.main__cards-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 16px;
   max-width: 1440px;
   margin: 0 auto 64px;
   padding: 0 40px;
+}
+
+.main__card-item {
+  margin: 0;
+  padding: 0;
 }
 
 .main__show-more-button {
@@ -125,7 +130,7 @@
   text-align: center;
 }
 
-.main__not-found-image {
+.main__nothing-found-image {
   width: 96px;
   height: 96px;
   margin: 0 0 40px 0;
@@ -158,7 +163,7 @@
     width: 768px;
   }
 
-  .main__content {
+  .main__hero-content {
     max-width: 500px;
     padding: 0 20px;
     margin-left: 145px;
@@ -191,7 +196,7 @@
     padding: 0 20px;
   }
 
-  .main__cards-container {
+  .main__cards-list {
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
     padding: 0 20px;
@@ -217,7 +222,7 @@
     margin-top: -56px; /* Negative margin to account for main padding */
   }
 
-  .main__content {
+  .main__hero-content {
     width: 100%;
     max-width: 288px;
     padding: 16px !important;
@@ -258,7 +263,7 @@
     padding: 0 16px;
   }
 
-  .main__cards-container {
+  .main__cards-list {
     grid-template-columns: 1fr;
     gap: 16px;
     padding: 0 16px;
@@ -275,7 +280,7 @@
     padding: 0 16px;
   }
 
-  .main__not-found-image {
+  .main__nothing-found-image {
     width: 64px;
     height: 64px;
     margin-bottom: 24px;
@@ -290,4 +295,8 @@
   .main__search-error-text {
     font-size: 16px;
   }
+}
+
+body.modal-open .header__menu-button {
+  display: none !important;
 }

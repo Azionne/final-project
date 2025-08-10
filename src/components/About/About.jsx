@@ -1,15 +1,14 @@
 import "./about.css";
-import { useState } from "react";
 import aboutImage from "../../assets/aboutimage.jpg";
 
 export function About() {
   return (
     <section id="about" className="about">
-      <div className="about__content-block">
+      <div className="about__container">
         <img className="about__image" src={aboutImage} alt="About Azionne" />
-        <div className="about__content-text">
+        <div className="about__text-content">
           <h2 className="about__title">About the Author</h2>
-          <div className="about__content">
+          <div className="about__description">
             <p className="about__paragraph">
               My name is Azionne Vorric and I am student at TripleTen that
               specializes in software engineering. I am familiar with html, css,

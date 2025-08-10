@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
+import Header from "../Header/Header.jsx";
 import { Main } from "../Main/Main.jsx";
-import { About } from "../About/About.jsx";
 import { Footer } from "../Footer/Footer.jsx";
 import SavedNews from "../SavedNews/SavedNews.jsx";
 import RegisterModal from "../RegisterModal/RegisterModal.jsx";
@@ -11,7 +11,6 @@ import RegistrationSuccessModal from "../RegistrationSuccessModal/RegistrationSu
 import { searchNews } from "../../utils/newsApi.js";
 
 function App() {
-  // State variables - like having all your remote controls ready!
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState("");
   const [registeredName, setRegisteredName] = useState("");
@@ -20,7 +19,6 @@ function App() {
   const [registrationError, setRegistrationError] = useState("");
   const [loginError, setLoginError] = useState("");
 
-  // News search states
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [searchError, setSearchError] = useState("");
@@ -28,23 +26,22 @@ function App() {
   const [savedArticles, setSavedArticles] = useState([]);
   const [lastSearchKeyword, setLastSearchKeyword] = useState("");
 
-  // Modal control functions - like remote control buttons!
   const closeActiveModal = () => {
     setActiveModal("");
-    setRegistrationError(""); // Clear errors when closing
-    setLoginError(""); // Clear login errors too
+    setRegistrationError("");
+    setLoginError("");
   };
 
   const switchToLoginModal = () => {
     setActiveModal("sign-in");
-    setRegistrationError(""); // Clear errors when switching
-    setLoginError(""); // Clear login errors too
+    setRegistrationError("");
+    setLoginError("");
   };
 
   const switchToRegisterModal = () => {
     setActiveModal("sign-up");
-    setRegistrationError(""); // Clear errors when switching
-    setLoginError(""); // Clear login errors too
+    setRegistrationError("");
+    setLoginError("");
   };
 
   const handleLogout = () => {
@@ -57,7 +54,6 @@ function App() {
     setIsSaving(true);
     setLoginError("");
 
-    // Email format validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       setLoginError("Invalid email address.");
@@ -65,13 +61,11 @@ function App() {
       return;
     }
 
-    // Simulate API call for now
     setTimeout(() => {
       console.log("Login attempt:", { email, password });
 
-      // Simulate successful login
       setIsLoggedIn(true);
-      setUserName(registeredName || ""); // Use registered name if available
+      setUserName(registeredName || "");
       closeActiveModal();
       setIsSaving(false);
     }, 1000);
@@ -81,7 +75,6 @@ function App() {
     setIsSaving(true);
     setRegistrationError("");
 
-    // Email format validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       setRegistrationError("Invalid email address.");
@@ -89,25 +82,22 @@ function App() {
       return;
     }
 
-    // Simulate API call for now
     setTimeout(() => {
       console.log("Registration attempt:", { name, avatar, email, password });
 
-      // Simulate unavailable email (e.g., 'taken@example.com')
       if (email === "taken@example.com") {
         setRegistrationError("This email is not available.");
         setIsSaving(false);
         return;
       }
 
-      setRegisteredName(name); // Store the registered name
-      // Show success modal instead of logging in immediately
+      setRegisteredName(name);
+      setUserName(name); // <-- add this line
       setActiveModal("registration-success");
       setIsSaving(false);
     }, 1000);
   };
 
-  // News search function
   const handleSearch = (query) => {
     setIsLoading(true);
     setSearchError("");
@@ -131,24 +121,20 @@ function App() {
       });
   };
 
-  // Save article function
   const handleSaveArticle = (article, keyword) => {
     if (!isLoggedIn) {
       return;
     }
 
-    // Check if article is already saved
     const isAlreadySaved = savedArticles.some(
       (saved) => saved.url === article.url
     );
 
     if (isAlreadySaved) {
-      // Remove from saved articles
       setSavedArticles((prev) =>
         prev.filter((saved) => saved.url !== article.url)
       );
     } else {
-      // Add to saved articles, include keyword if provided
       setSavedArticles((prev) => [
         ...prev,
         keyword ? { ...article, keyword } : article,
@@ -158,78 +144,85 @@ function App() {
 
   return (
     <Router>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <Main
-                isLoggedIn={isLoggedIn}
-                userName={userName}
-                onSignInClick={switchToLoginModal}
-                onSignUpClick={switchToRegisterModal}
-                onLogout={handleLogout}
-                onSearch={handleSearch}
-                articles={articles}
-                isLoading={isLoading}
-                searchError={searchError}
-                hasSearched={hasSearched}
-                savedArticles={savedArticles}
-                onSaveArticle={(article) =>
-                  handleSaveArticle(article, lastSearchKeyword)
-                }
-              />
-              <About />
-              <Footer />
-            </>
-          }
+      <div className="app">
+        <Header
+          isLoggedIn={isLoggedIn}
+          userName={userName}
+          onSignInClick={switchToLoginModal}
+          onSignUpClick={switchToRegisterModal}
+          onLogout={handleLogout}
         />
-        <Route
-          path="/saved-news"
-          element={
-            <>
-              <SavedNews
-                isLoggedIn={isLoggedIn}
-                userName={userName}
-                onSignInClick={switchToLoginModal}
-                onSignUpClick={switchToRegisterModal}
-                onLogout={handleLogout}
-                savedArticles={savedArticles}
-                onSaveArticle={handleSaveArticle}
-              />
-              <Footer />
-            </>
-          }
-        />
-      </Routes>
 
-      {/* Modals remain outside of Routes so they work on all pages */}
-      <RegisterModal
-        isOpen={activeModal === "sign-up"}
-        switchToLogin={switchToLoginModal}
-        activeModal={activeModal}
-        onClose={closeActiveModal}
-        onRegister={handleRegisterClick}
-        isSaving={isSaving}
-        setActiveModal={setActiveModal}
-        registrationError={registrationError}
-      />
-      <LoginModal
-        isOpen={activeModal === "sign-in"}
-        switchToRegister={() => setActiveModal("sign-up")}
-        activeModal={activeModal}
-        onClose={closeActiveModal}
-        onLogin={handleLogin}
-        isSaving={isSaving}
-        loginError={loginError}
-      />
-      <RegistrationSuccessModal
-        isOpen={activeModal === "registration-success"}
-        onClose={closeActiveModal}
-        onSwitchToLogin={switchToLoginModal}
-      />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <main className="app__main">
+                <Main
+                  isLoggedIn={isLoggedIn}
+                  userName={userName}
+                  onSignInClick={switchToLoginModal}
+                  onSignUpClick={switchToRegisterModal}
+                  onLogout={handleLogout}
+                  onSearch={handleSearch}
+                  articles={articles}
+                  isLoading={isLoading}
+                  searchError={searchError}
+                  hasSearched={hasSearched}
+                  savedArticles={savedArticles}
+                  onSaveArticle={(article) =>
+                    handleSaveArticle(article, lastSearchKeyword)
+                  }
+                />
+              </main>
+            }
+          />
+          <Route
+            path="/saved-news"
+            element={
+              <main className="app__main">
+                <SavedNews
+                  isLoggedIn={isLoggedIn}
+                  userName={userName}
+                  onSignInClick={switchToLoginModal}
+                  onSignUpClick={switchToRegisterModal}
+                  onLogout={handleLogout}
+                  savedArticles={savedArticles}
+                  onSaveArticle={handleSaveArticle}
+                />
+              </main>
+            }
+          />
+        </Routes>
+
+        <Footer />
+
+        <RegisterModal
+          isOpen={activeModal === "sign-up"}
+          switchToLogin={switchToLoginModal}
+          activeModal={activeModal}
+          onClose={closeActiveModal}
+          onRegister={handleRegisterClick}
+          isSaving={isSaving}
+          setActiveModal={setActiveModal}
+          registrationError={registrationError}
+        />
+        <LoginModal
+          isOpen={activeModal === "sign-in"}
+          switchToRegister={() => setActiveModal("sign-up")}
+          activeModal={activeModal}
+          onClose={closeActiveModal}
+          onLogin={handleLogin}
+          isSaving={isSaving}
+          loginError={loginError}
+        />
+        <RegistrationSuccessModal
+          isOpen={activeModal === "registration-success"}
+          onClose={closeActiveModal}
+          onSwitchToLogin={switchToLoginModal}
+        />
+      </div>
     </Router>
   );
 }
-
 export default App;
