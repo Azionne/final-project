@@ -5,25 +5,34 @@
   box-sizing: border-box;
 }
 
-html,
+html {
+  /*min-height: 100px;
+  height: auto; */
+}
+
 body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
+  /*min-height: 0;
+  height: auto; */
+}
+
+/* Main app container */
+.app {
+  display: flex;
+  flex-direction: column;
+  /*width: 100vw;
+  max-width: 1440px; */
+  margin: 0 auto;
+  box-sizing: border-box;
   overflow-x: hidden;
 }
 
-/* Hero Section with Background Image */
-.hero-section {
-  position: relative;
-  width: 100vw;
-  height: 60vh;
-  background-image: url("../../assets/background image.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  filter: brightness(0.9);
+/* Tablet: range 769px to 1024px (responsive) */
+@media (min-width: 600px) and (max-width: 1024px) {
+}
+
+@media (max-width: 599px) {
+  .app {
+    width: 320px;
+    height: 100%;
+  }
 }
