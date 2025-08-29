@@ -1,6 +1,6 @@
 import "./main.css";
 import SearchForm from "../SearchForm/SearchForm.jsx";
-import NewsCard from "../NewsCard/NewsCard.jsx";
+import { NewsCardList } from "../NewsCard/NewsCard.jsx";
 import Preloader from "../Preloader/Preloader.jsx";
 import { About } from "../About/About.jsx";
 import notFoundImg from "../../assets/not-found_v1.svg";
@@ -20,15 +20,7 @@ export function Main({
   savedArticles,
   onSaveArticle,
 }) {
-  const [visibleCards, setVisibleCards] = useState(3);
-
-  const handleShowMore = () => {
-    setVisibleCards((prev) => Math.min(prev + 3, articles.length));
-  };
-
-  const isArticleSaved = (article) => {
-    return savedArticles.some((saved) => saved.url === article.url);
-  };
+  // No need for visibleCards or isArticleSaved here, handled in NewsCardList
 
   const renderSearchResults = () => {
     if (!hasSearched) {
@@ -80,44 +72,15 @@ export function Main({
       );
     }
 
+    // Use NewsCardList for rendering cards
     return (
-      <section
-        className="main__search-results"
-        aria-live="polite"
-        aria-labelledby="search-results-title"
-      >
-        <h2 id="search-results-title" className="main__search-results-title">
-          Search results
-        </h2>
-        <ul className="main__cards-list">
-          {articles.slice(0, visibleCards).map((article, index) => (
-            <li key={`${article.url}-${index}`} className="main__card-item">
-              <NewsCard
-                article={article}
-                isLoggedIn={isLoggedIn}
-                onSave={(article) => onSaveArticle(article, article.keyword)}
-                isSaved={isArticleSaved(article)}
-                showDelete={false}
-              />
-            </li>
-          ))}
-        </ul>
-        {visibleCards < articles.length && (
-          <button
-            className="main__show-more-button"
-            onClick={handleShowMore}
-            type="button"
-            aria-label={`Show ${Math.min(
-              3,
-              articles.length - visibleCards
-            )} more articles out of ${
-              articles.length - visibleCards
-            } remaining`}
-          >
-            Show more
-          </button>
-        )}
-      </section>
+      <NewsCardList
+        articles={articles}
+        isLoggedIn={isLoggedIn}
+        savedArticles={savedArticles}
+        onSaveArticle={onSaveArticle}
+        showDelete={false}
+      />
     );
   };
 

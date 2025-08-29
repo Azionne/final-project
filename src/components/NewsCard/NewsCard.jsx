@@ -2,12 +2,16 @@ import "./newsCard.css";
 import { formatDate } from "../../utils/newsApi";
 import { useState } from "react";
 import trashIcon from "../../assets/trash.svg";
+import bookmarkIcon from "../../assets/bookmark.svg";
+import bookmarkSavedIcon from "../../assets/bookmark-saved.svg";
 
+// Single NewsCard component
 function NewsCard({ article, isLoggedIn, onSave, isSaved, showDelete }) {
   const getCapitalizedKeyword = (keyword) => {
     if (!keyword) return "";
     return keyword.charAt(0).toUpperCase() + keyword.slice(1);
   };
+
   const [showTooltip, setShowTooltip] = useState(false);
   const [showDeleteTooltip, setShowDeleteTooltip] = useState(false);
 
@@ -30,7 +34,7 @@ function NewsCard({ article, isLoggedIn, onSave, isSaved, showDelete }) {
   return (
     <article className="news-card">
       <div className="news-card__image-container">
-        {/* Keyword pill (top left) for saved cards */}
+        {/* Keyword pill for saved cards */}
         {showDelete && isSaved && article.keyword && (
           <div className="news-card__keyword-pill">
             {getCapitalizedKeyword(article.keyword)}
@@ -68,31 +72,26 @@ function NewsCard({ article, isLoggedIn, onSave, isSaved, showDelete }) {
             )}
           </>
         ) : (
-          <div
-            className={`news-card__save-button ${
-              !isLoggedIn ? "news-card__save-button_inactive" : ""
-            } ${isSaved ? "news-card__save-button_saved" : ""}`}
+          <button
+            className={`news-card__save-button${
+              isSaved ? " news-card__save-button--active" : ""
+            }`}
             onClick={handleSaveClick}
+            aria-label={isSaved ? "Remove bookmark" : "Save bookmark"}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
-            <svg
-              width="14"
-              height="19"
-              viewBox="0 0 14 19"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M6.28571 3.14583C6.28571 1.95851 7.2943 1 8.54286 1C9.79141 1 10.8 1.95851 10.8 3.14583V15.4167L8.54286 13.25L6.28571 15.4167V3.14583Z"
-                stroke="white"
-                strokeWidth="2"
-              />
-            </svg>
+            <img
+              src={isSaved ? bookmarkSavedIcon : bookmarkIcon}
+              alt="Save article"
+              width={24}
+              height={24}
+              className="news-card__bookmark-icon"
+            />
             {showTooltip && (
               <div className="news-card__tooltip">Sign in to save articles</div>
             )}
-          </div>
+          </button>
         )}
       </div>
 
@@ -103,6 +102,56 @@ function NewsCard({ article, isLoggedIn, onSave, isSaved, showDelete }) {
         <p className="news-card__source">{article.source.name}</p>
       </div>
     </article>
+  );
+}
+
+// NewsCardList function inside NewsCard.jsx
+export function NewsCardList({
+  articles,
+  isLoggedIn,
+  savedArticles,
+  onSaveArticle,
+  showDelete = false,
+}) {
+  const [visibleCards, setVisibleCards] = useState(3);
+
+  const handleShowMore = () => {
+    setVisibleCards((prev) => Math.min(prev + 3, articles.length));
+  };
+
+  const isArticleSaved = (article) =>
+    savedArticles.some((saved) => saved.url === article.url);
+
+  if (!articles || articles.length === 0) {
+    return null;
+  }
+
+  return (
+    <section className="news-card-list" aria-live="polite">
+      <h2 className="news-card-list__title">Search results</h2>
+      <ul className="news-card-list__list">
+        {articles.slice(0, visibleCards).map((article, index) => (
+          <li key={`${article.url}-${index}`} className="news-card-list__item">
+            <NewsCard
+              article={article}
+              isLoggedIn={isLoggedIn}
+              onSave={onSaveArticle}
+              isSaved={isArticleSaved(article)}
+              showDelete={showDelete}
+            />
+          </li>
+        ))}
+      </ul>
+      {visibleCards < articles.length && (
+        <button
+          className="news-card-list__show-more"
+          onClick={handleShowMore}
+          type="button"
+        >
+          Show more
+        </button>
+      )}
+    </section>
   );
 }
 

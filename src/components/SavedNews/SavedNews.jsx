@@ -74,33 +74,35 @@ function SavedNews({
 
       {isLoggedIn ? (
         <section className="saved-news__articles-section">
-          {savedArticles.length > 0 ? (
-            <ul className="saved-news__articles-list">
-              {savedArticles.map((article, index) => (
-                <li
-                  key={`${article.url}-${index}`}
-                  className="saved-news__article-item"
-                >
-                  <NewsCard
-                    article={article}
-                    isLoggedIn={isLoggedIn}
-                    onSave={(article) =>
-                      onSaveArticle(article, article.keyword)
-                    }
-                    isSaved={isArticleSaved(article)}
-                    showDelete={true}
-                  />
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <div className="saved-news__empty-state">
-              <h2 className="saved-news__empty-title">No saved articles yet</h2>
-              <p className="saved-news__empty-text">
-                Start exploring news and save articles you find interesting!
-              </p>
-            </div>
-          )}
+          <div
+            className="saved-articles-space"
+            style={{
+              minHeight: savedArticles.length === 0 ? "120px" : "auto",
+            }}
+          >
+            {savedArticles.length === 0 ? (
+              <p>No saved articles yet.</p>
+            ) : (
+              <ul className="saved-news__articles-list">
+                {savedArticles.map((article, index) => (
+                  <li
+                    key={`${article.url}-${index}`}
+                    className="saved-news__article-item"
+                  >
+                    <NewsCard
+                      article={article}
+                      isLoggedIn={isLoggedIn}
+                      onSave={(article) =>
+                        onSaveArticle(article, article.keyword)
+                      }
+                      isSaved={isArticleSaved(article)}
+                      showDelete={true}
+                    />
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
         </section>
       ) : (
         <section className="saved-news__login-section">

@@ -6,7 +6,7 @@ const API_KEY =
 
 // Handle development vs production URLs
 const newsApiBaseUrl =
-  process.env.NODE_ENV === "production"
+  import.meta.env.MODE === "production"
     ? "https://nomoreparties.co/news/v2/everything"
     : "https://newsapi.org/v2/everything";
 

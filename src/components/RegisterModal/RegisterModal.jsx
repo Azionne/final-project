@@ -21,6 +21,18 @@ export default function RegisterModal(props) {
 
   const isOpen = activeModal === "sign-up";
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add("register-modal-open");
+    } else {
+      document.body.classList.remove("register-modal-open");
+    }
+
+    return () => {
+      document.body.classList.remove("register-modal-open");
+    };
+  }, [isOpen]);
+
   const resetForm = () => {
     setEmail("");
     setPassword("");

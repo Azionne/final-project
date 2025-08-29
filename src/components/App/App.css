@@ -6,33 +6,22 @@
 }
 
 html {
-  /*min-height: 100px;
-  height: auto; */
+  min-height: 100px;
+  height: auto;
 }
 
 body {
-  /*min-height: 0;
-  height: auto; */
 }
 
 /* Main app container */
 .app {
   display: flex;
   flex-direction: column;
-  /*width: 100vw;
-  max-width: 1440px; */
   margin: 0 auto;
   box-sizing: border-box;
   overflow-x: hidden;
 }
 
-/* Tablet: range 769px to 1024px (responsive) */
-@media (min-width: 600px) and (max-width: 1024px) {
-}
-
-@media (max-width: 599px) {
-  .app {
-    width: 320px;
-    height: 100%;
-  }
+.app__main {
+  min-height: 536px;
 }

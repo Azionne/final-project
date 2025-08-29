@@ -11,8 +11,13 @@ import RegistrationSuccessModal from "../RegistrationSuccessModal/RegistrationSu
 import { searchNews } from "../../utils/newsApi.js";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userName, setUserName] = useState("");
+  // Load username and login state from localStorage if available
+  const [userName, setUserName] = useState(
+    () => localStorage.getItem("userName") || ""
+  );
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    () => localStorage.getItem("isLoggedIn") === "true"
+  );
   const [registeredName, setRegisteredName] = useState("");
   const [activeModal, setActiveModal] = useState("");
   const [isSaving, setIsSaving] = useState(false);
@@ -46,7 +51,9 @@ function App() {
 
   const handleLogout = () => {
     setIsLoggedIn(false);
+    localStorage.removeItem("isLoggedIn");
     setUserName("");
+    localStorage.removeItem("userName");
     closeActiveModal();
   };
 
@@ -62,10 +69,13 @@ function App() {
     }
 
     setTimeout(() => {
-      console.log("Login attempt:", { email, password });
-
       setIsLoggedIn(true);
-      setUserName(registeredName || "");
+      localStorage.setItem("isLoggedIn", "true");
+      setUserName(registeredName || localStorage.getItem("userName") || "");
+      localStorage.setItem(
+        "userName",
+        registeredName || localStorage.getItem("userName") || ""
+      );
       closeActiveModal();
       setIsSaving(false);
     }, 1000);
@@ -83,8 +93,6 @@ function App() {
     }
 
     setTimeout(() => {
-      console.log("Registration attempt:", { name, avatar, email, password });
-
       if (email === "taken@example.com") {
         setRegistrationError("This email is not available.");
         setIsSaving(false);
@@ -92,7 +100,8 @@ function App() {
       }
 
       setRegisteredName(name);
-      setUserName(name); // <-- add this line
+      setUserName(name);
+      localStorage.setItem("userName", name);
       setActiveModal("registration-success");
       setIsSaving(false);
     }, 1000);
@@ -110,7 +119,6 @@ function App() {
         setSearchError("");
       })
       .catch((error) => {
-        console.error("Search error:", error);
         setSearchError(
           "Sorry, something went wrong during the request. Please try again later."
         );
@@ -180,7 +188,7 @@ function App() {
           <Route
             path="/saved-news"
             element={
-              <main className="app__main">
+              <main className="">
                 <SavedNews
                   isLoggedIn={isLoggedIn}
                   userName={userName}
@@ -225,4 +233,5 @@ function App() {
     </Router>
   );
 }
+
 export default App;

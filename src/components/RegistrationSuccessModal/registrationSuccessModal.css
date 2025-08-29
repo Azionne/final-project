@@ -1,35 +1,6 @@
 .registration-success__title {
   display: block;
   text-align: left;
-}
-
-/* Ensure completed! is left-aligned and on a new line */
-.registration-success__title-completed {
-  display: block;
-  margin-top: 2px;
-}
-
-@media (max-width: 480px) {
-  .registration-success__title {
-    text-align: left;
-  }
-}
-.registration-success__content {
-  text-align: center;
-  width: 430px;
-  min-height: 182px;
-  max-width: 100vw;
-  padding: 32px 24px 24px;
-}
-
-.registration-success__body {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  align-items: flex-start;
-}
-
-.registration-success__title {
   font-family: "RobotoSlab", serif;
   font-weight: 700;
   font-size: 20px;
@@ -37,6 +8,28 @@
   color: #1a1b22;
   margin: 0;
   max-width: 358px;
+}
+
+.registration-success__title-completed {
+  display: block;
+  margin-top: 2px;
+}
+
+.registration-success__content {
+  text-align: center;
+  width: 100vw;
+  max-width: 430px;
+  min-height: 182px;
+  padding: 32px 24px 24px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.registration-success__body {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
 }
 
 .registration-success__signin-button {
@@ -54,8 +47,6 @@
   width: auto;
   min-width: 0;
   height: auto;
-  display: inline-block;
-  align-self: center;
   align-self: flex-start;
   margin-right: 293px;
 }
@@ -69,20 +60,64 @@
   outline-offset: 2px;
 }
 
-/* Mobile responsiveness */
-@media screen and (max-width: 580px) {
+/* Tablet: range 769px to 930px (responsive) */
+@media screen and (max-width: 1024px) {
   .registration-success__content {
-    padding: 32px 20px 28px;
-    max-width: calc(100vw - 40px);
+    width: 90vw;
+    max-width: 420px;
+    min-width: 0;
+    padding: 28px 16px 20px;
+    box-sizing: border-box;
+    margin: 0 auto;
   }
-
   .registration-success__title {
     font-size: 18px;
-    max-width: 280px;
+    max-width: 320px;
+    text-align: center;
+    margin: 0 auto;
   }
+  .registration-success__signin-button {
+    font-size: 16px;
+    margin-right: 0;
+    width: 100%;
+    text-align: center;
+    align-self: center;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+  .registration-success__body {
+    gap: 16px;
+    align-items: center;
+  }
+}
 
+/* Mobile responsiveness (below 768px) */
+@media screen and (max-width: 599px) {
+  .registration-success__content {
+    width: 100vw;
+    max-width: 100vw;
+    min-width: 0;
+    padding: 20px 8px 16px;
+    box-sizing: border-box;
+    margin: 0 auto;
+  }
+  .registration-success__title {
+    font-size: 16px;
+    max-width: 220px;
+    text-align: center;
+    margin: 0 auto;
+  }
   .registration-success__signin-button {
     font-size: 14px;
-    width: 100px;
+    width: 100vw;
+    margin-right: 0;
+    text-align: center;
+    align-self: center;
+    max-width: 220px;
+    margin: 0 auto;
+  }
+  .registration-success__body {
+    gap: 12px;
+    align-items: center;
   }
 }

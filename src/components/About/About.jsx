@@ -13,8 +13,11 @@ export function About() {
               My name is Azionne Vorric and I am student at TripleTen that
               specializes in software engineering. I am familiar with html, css,
               javascript, node.js and React.
+              <br />
+              <span style={{ display: "block", marginTop: "16px" }}>
+                Blah, blah, blah 😛
+              </span>
             </p>
-            <p className="about__paragraph">Blah, blah, blah 😛</p>
           </div>
         </div>
       </div>
