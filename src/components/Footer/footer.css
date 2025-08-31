@@ -1,0 +1,240 @@
+.footer {
+  margin-top: auto;
+  font-family: Inter, Arial, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: #6f6f6f;
+  padding: 0 40px;
+  width: 100%;
+  max-width: 1440px;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.footer__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  min-width: 320px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.footer__copyright {
+  font-size: 18px;
+  font-weight: 400;
+  font-family: "RobotoSlab", serif;
+  margin: 0;
+  opacity: 0.8;
+  text-align: left;
+}
+
+.footer__links {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.footer__navigation {
+  font-size: 18px;
+  font-weight: 400;
+  font-family: "RobotoSlab", serif;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer__nav-item {
+  list-style: none;
+}
+
+.footer__nav-link {
+  color: #000000;
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.3s;
+}
+
+.footer__nav-link:hover {
+  opacity: 0.7;
+}
+
+.footer__social-list {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer__social-item {
+  list-style: none;
+}
+
+.footer__social-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: opacity 0.3s;
+  color: #000000;
+}
+
+.footer__social-link:hover {
+  opacity: 0.7;
+}
+
+.footer__social-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+/* Tablet: range 769px to 930px (responsive) */
+@media screen and (max-width: 1024px) {
+  .footer {
+    padding: 0;
+    /*height: 500px; */
+    box-sizing: border-box;
+    margin: 0 auto;
+    overflow-x: hidden;
+  }
+
+  .footer__container {
+    flex-direction: row;
+    gap: 16px;
+    align-items: center;
+    width: 100vw;
+    max-width: 930px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    overflow-x: hidden;
+  }
+
+  .footer__copyright {
+    font-size: 16px;
+    color: #777;
+    text-align: left;
+    margin: 0;
+    line-height: 24px;
+    min-width: 301px;
+    margin-left: 24px;
+  }
+
+  .footer__links {
+    justify-content: flex-end;
+    gap: 32px;
+    width: auto;
+    margin-right: 24px;
+  }
+
+  .footer__navigation {
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 24px;
+    width: auto;
+  }
+
+  .footer__nav-link {
+    font-size: 17px;
+    color: #333;
+    font-weight: 500;
+  }
+
+  .footer__social-list {
+    justify-content: flex-end;
+    gap: 28px;
+    width: auto;
+  }
+}
+
+/* Mobile responsiveness (below 768px) */
+@media screen and (max-width: 599px) {
+  .footer {
+    padding: 0 12px;
+    margin: 0;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+  }
+
+  .footer__container {
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+    box-sizing: border-box;
+    margin: 0 auto;
+    max-width: 100%;
+    min-height: 200px;
+  }
+
+  .footer__copyright {
+    flex-wrap: wrap;
+    flex-wrap: wrap;
+    font-size: 15px;
+    color: #b6bcbf;
+    text-align: center;
+    margin: 0 auto;
+    line-height: 20px;
+    font-family: "Roboto", sans-serif;
+    order: 2;
+    width: 100%;
+    white-space: nowrap;
+    margin-top: 62px;
+    margin-left: -330px;
+  }
+
+  .footer__links {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: auto;
+    order: 1;
+    gap: 8px;
+  }
+
+  .footer__navigation {
+    display: flex;
+    flex-direction: column; /* Stack vertically */
+    gap: 16px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: auto;
+    margin-bottom: 50px;
+  }
+
+  .footer__nav-item {
+    list-style: none;
+  }
+
+  .footer__social-list {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 90px;
+    margin-left: 144px;
+  }
+
+  .footer__social-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .footer__social-link {
+    color: #1a1b22;
+  }
+
+  .footer__navigation .footer__nav-item:first-child .footer__nav-link {
+    margin-left: -30px; /* Adjust this value as needed */
+  }
+}

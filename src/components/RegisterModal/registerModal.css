@@ -1,0 +1,161 @@
+/* Register Modal Specific Styles */
+.register-modal__label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-family: "RobotoSlab", serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a1b22;
+  margin-bottom: 16px;
+  max-width: 358px;
+  margin: 0 auto 16px auto;
+}
+.register-modal__input {
+  width: 100%;
+  max-width: 358px;
+  height: 40px;
+  padding: 12px 16px;
+  border: none;
+  border-bottom: 1px solid #d1d2d6;
+  border-radius: 0;
+  font-size: 16px;
+  font-family: "RobotoSlab", serif;
+  background-color: #ffffff;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+.register-modal__input:focus {
+  outline: none;
+  border-bottom-color: #2f71e5;
+  box-shadow: none;
+}
+.register-modal__input::placeholder {
+  color: #b6bcbf;
+  font-style: italic;
+}
+.register-modal__error {
+  color: #ff6b6b;
+  font-size: 12px;
+  margin: 8px 0;
+  padding: 12px 16px;
+  background-color: transparent;
+  border-radius: 6px;
+  font-family: "RobotoSlab", serif;
+  text-align: center;
+}
+.register-modal__error-email {
+  color: #ff6b6b;
+  font-size: 12px;
+  margin: 4px 0 0 0;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 0;
+  font-family: "RobotoSlab", serif;
+  text-align: left;
+}
+.register-modal__switch-button {
+  background: none;
+  border: none;
+  color: #2f71e5;
+  font-size: 16px;
+  font-family: "RobotoSlab", serif;
+  cursor: pointer;
+  padding: 8px 0;
+  text-align: center;
+  transition: color 0.2s;
+  margin-left: 145px;
+}
+.register-modal__switch-button:hover {
+  color: #1e5bb8;
+  text-decoration: underline;
+}
+.register-modal__login-link {
+  display: inline-block;
+  margin-left: 16px;
+  vertical-align: middle;
+  color: #00000080;
+  font-size: 16px;
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: "Cabinet Grotesk", sans-serif;
+  margin-left: 14px;
+  margin-top: -11px;
+}
+
+/* Tablet: range 769px to 930px (responsive) */
+@media (min-width: 600px) and (max-width: 1024px) {
+  .register-modal__input {
+    width: 100%;
+    height: 44px;
+    max-width: 358px;
+  }
+  .register-modal__label {
+    margin-bottom: 18px;
+    max-width: 358px;
+  }
+  .modal__submit-button {
+    margin-top: 20px;
+    width: 100%;
+    max-width: 358px;
+  }
+  .register-modal__switch-button {
+    width: 100%;
+    margin-left: 0;
+    font-size: 15px;
+    padding: 10px 0 0 0;
+    text-align: center;
+    max-width: 358px;
+  }
+}
+
+/* Mobile responsiveness (below 768px) */
+@media (max-width: 599px) {
+  .modal {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+  .modal__content {
+    width: 100vw;
+    min-height: 100vh;
+    padding: 20px 12px;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  /* Hide menu line when register modal is open */
+  .register-modal-open .header__menu-line {
+    display: none !important;
+  }
+  .register-modal__input {
+    width: 100vw;
+    max-width: 320px;
+    height: 48px;
+    margin: 0 auto;
+  }
+  .register-modal__label {
+    width: 100vw;
+    max-width: 320px;
+    margin: 0 auto 20px auto;
+    color: #2f71e5;
+    margin-left: 16px;
+    margin-right: 0;
+  }
+  .register-modal__switch-button {
+    width: 100vw;
+    margin-left: 0;
+    font-size: 14px;
+    padding: 8px 0 0 0;
+    text-align: center;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+}
